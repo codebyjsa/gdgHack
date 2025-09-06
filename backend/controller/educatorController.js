@@ -12,11 +12,17 @@ const createEducator = async (req, res) => {
             educator_photo_key
         } = req.body;
 
-        // 1. Create auth user
+        // 1. Create auth user with confirmation
         const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
             email,
             password,
-            email_confirm: true // Auto-confirm the email
+            email_confirm: true, // Auto-confirm the email
+            user_metadata: { email_confirmed_at: new Date().toISOString() }
+        });
+        
+        // Explicitly confirm the user
+        await supabaseAdmin.auth.admin.updateUserById(authData.user.id, {
+            email_confirm: true
         });
 
         if (authError) {
