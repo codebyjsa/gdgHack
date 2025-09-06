@@ -1,0 +1,48 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs & debug
+*.log
+*.out
+*.err
+
+# Environment variables
+.env
+*.env
+
+# IDE / editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+.mypy_cache/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# macOS / Windows junk
+.DS_Store
+Thumbs.db
+
