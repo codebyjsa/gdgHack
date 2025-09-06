@@ -13,6 +13,7 @@ Authorization: Bearer YOUR_JWT_TOKEN
 - [Educator APIs](#educator-apis)
 - [Student APIs](#student-apis)
 - [Course APIs](#course-apis)
+- [Course Content APIs](#course-content-apis)
 
 ---
 
@@ -268,3 +269,122 @@ Authorization: Bearer YOUR_JWT_TOKEN
     "is_published": false
   }
 }
+
+---
+
+## Course Content APIs
+
+### Create Course Content
+- **URL**: `/courses/createCourseContent/:course_id`
+- **Method**: `POST`
+- **Auth Required**: Yes
+
+**Request Body**:
+```json
+{
+  "content_type": "video",
+  "title": "Introduction to the Course",
+  "body": "Welcome to the first lecture of this course...",
+  "course_file_key": "courses/123/lecture1.mp4"
+}
+```
+
+**Success Response (201)**:
+```json
+{
+  "success": true,
+  "message": "Course content created successfully",
+  "data": {
+    "content_id": "880e8400-e29b-41d4-a716-446655440003",
+    "course_id": "770e8400-e29b-41d4-a716-446655440002",
+    "content_type": "video",
+    "title": "Introduction to the Course",
+    "body": "Welcome to the first lecture of this course...",
+    "created_at": "2025-09-07T02:00:00.000Z",
+    "course_file_key": "courses/123/lecture1.mp4"
+  }
+}
+```
+
+### Get All Course Contents
+- **URL**: `/courses/getCourseContents/:course_id`
+- **Method**: `GET`
+- **Auth Required**: No
+
+**Success Response (200)**:
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "content_id": "880e8400-e29b-41d4-a716-446655440003",
+      "course_id": "770e8400-e29b-41d4-a716-446655440002",
+      "content_type": "video",
+      "title": "Introduction to the Course",
+      "body": "Welcome to the first lecture of this course...",
+      "created_at": "2025-09-07T02:00:00.000Z",
+      "course_file_key": "courses/123/lecture1.mp4"
+    }
+  ]
+}
+```
+
+### Get Content by ID
+- **URL**: `/courses/getContentById/:content_id`
+- **Method**: `GET`
+- **Auth Required**: No
+
+**Success Response (200)**:
+```json
+{
+  "success": true,
+  "data": {
+    "content_id": "880e8400-e29b-41d4-a716-446655440003",
+    "course_id": "770e8400-e29b-41d4-a716-446655440002",
+    "content_type": "video",
+    "title": "Introduction to the Course",
+    "body": "Welcome to the first lecture of this course...",
+    "created_at": "2025-09-07T02:00:00.000Z",
+    "course_file_key": "courses/123/lecture1.mp4"
+  }
+}
+```
+
+### Update Content
+- **URL**: `/courses/updateContent/:content_id`
+- **Method**: `PUT`
+- **Auth Required**: Yes
+
+**Request Body**:
+```json
+{
+  "title": "Updated Introduction",
+  "body": "Updated content description..."
+}
+```
+
+**Success Response (200)**:
+```json
+{
+  "success": true,
+  "message": "Content updated successfully",
+  "data": {
+    "content_id": "880e8400-e29b-41d4-a716-446655440003",
+    "title": "Updated Introduction",
+    "body": "Updated content description..."
+  }
+}
+```
+
+### Delete Content
+- **URL**: `/courses/deleteContent/:content_id`
+- **Method**: `DELETE`
+- **Auth Required**: Yes
+
+**Success Response (200)**:
+```json
+{
+  "success": true,
+  "message": "Content deleted successfully"
+}
+```

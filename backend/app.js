@@ -10,7 +10,7 @@ const courseContentRoutes = require('./routes/courseContentRoutes');
 
 // Enable CORS for all routes
 app.use(cors({
-  origin: 'http://localhost:5173', // Allow requests from your React app
+  origin: ['http://localhost:5173', 'http://localhost:3000'], // Allow requests from your React app
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
