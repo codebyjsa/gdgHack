@@ -6,6 +6,7 @@ const usersRoutes = require('./routes/usersRoutes');
 const educatorsRoutes = require('./routes/educatorRoutes');
 const studentRoutes = require('./routes/studentRoutes');
 const courseRoutes = require('./routes/courseRoutes');
+const courseContentRoutes = require('./routes/courseContentRoutes');
 
 // Enable CORS for all routes
 app.use(cors({
@@ -25,6 +26,7 @@ app.use('/api/users', usersRoutes);
 app.use('/api/educators', educatorsRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/courses', courseRoutes);
+app.use('/api/courses', courseContentRoutes);
 
 // Export the configured app
 module.exports = app;
