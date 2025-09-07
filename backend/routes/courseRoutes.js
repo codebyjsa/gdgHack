@@ -9,6 +9,15 @@ const {
 } = require('../controller/courseController');
 const { verifyJWT } = require('../middleware/authMiddleware');
 
+// Handle OPTIONS for CORS preflight
+router.options('/createCourse', (req, res) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.sendStatus(200);
+});
+
 // Create a new course (protected)
 router.post('/createCourse', verifyJWT, createCourse);
 

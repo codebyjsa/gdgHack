@@ -4,6 +4,7 @@ const { supabase } = require('../config/supabase');
 const createCourse = async (req, res) => {
     try {
         const { 
+            course_id,
             educator_id,
             title,
             description,
@@ -35,24 +36,29 @@ const createCourse = async (req, res) => {
         }
 
         // Create the course
-        const { data: courseData, error: courseError } = await supabase
+        const coursePayload = {
+            course_id: course_id || undefined, // Let Supabase generate if not provided
+            educator_id,
+            title,
+            description: description || null,
+            price: parseFloat(price),
+            course_cover_image_key: course_cover_image_key || null,
+            is_published: Boolean(is_published)
+        };
+
+        const { data, error: courseError } = await supabase
             .from('courses')
-            .insert([{
-                educator_id,
-                title,
-                description: description || null,
-                price: parseFloat(price),
-                course_cover_image_key: course_cover_image_key || null,
-                is_published: Boolean(is_published)
-            }])
+            .insert([coursePayload])
             .select();
+            
+        const courseData = data?.[0];
 
         if (courseError) throw courseError;
 
         res.status(201).json({
             success: true,
             message: 'Course created successfully',
-            data: courseData[0]
+            data: courseData
         });
 
     } catch (error) {
