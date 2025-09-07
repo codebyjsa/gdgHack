@@ -26,7 +26,7 @@ app.use('/api/users', usersRoutes);
 app.use('/api/educators', educatorsRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/courses', courseRoutes);
-app.use('/api/courses', courseContentRoutes);
+app.use('/api/coursesContent', courseContentRoutes);
 
 // Export the configured app
 module.exports = app;
